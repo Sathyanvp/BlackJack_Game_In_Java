@@ -31,6 +31,8 @@ public class BlackJackgameRunner {
 	    while(!isgame_finish) {
 	    	out.println("Do you want to play a game of blackjack? type 'yes' or 'no':");
 			String choice = Scan.nextLine();
+			usercards.clear();
+			computercards.clear();
 			if(choice.equalsIgnoreCase("yes")) {
 				out.println("you have "+money+" for bet");
 				out.println("Enter bet amount");
@@ -46,19 +48,19 @@ public class BlackJackgameRunner {
 						out.println("Total of your cards: " +userValOfCards);
                         out.println("Total of delars cards: " +computerValOfCards);
                         out.println("Draw 🙃");
-                        break;
+                        
                     } 
 					else if (computerValOfCards == 21 && computercards.size() == 2) {
 						out.println("Total of your cards: " +userValOfCards);
                         out.println("Total of delars cards: " +computerValOfCards);
                         out.println("You lose 😭");
-                        break;
+                        
                     } 
 					else if (userValOfCards == 21 && usercards.size() == 2) {
 						out.println("Total of your cards: " +userValOfCards);
                         out.println("Total of delars cards: " +computerValOfCards);
                         out.println("You win 😃");
-                        break;
+                       
                     } 
 					else  {
                         out.println("Total of your cards: " +userValOfCards);
@@ -76,7 +78,7 @@ public class BlackJackgameRunner {
     							}
     							out.println("Dealers cards : "+computercards);
     							out.println("sum of Dealers cards : "+computerValOfCards);
-    							winresult=wc.findwinner(computerValOfCards,computerValOfCards);
+    							winresult=wc.findwinner(computerValOfCards,userValOfCards);
     							out.println(winresult);
     							
     							winner=true;
@@ -85,8 +87,9 @@ public class BlackJackgameRunner {
     							usercards.add(userCards.generateOneCard());
     							userValOfCards=calSum.sum(usercards);
     							if(userValOfCards>=21) {
-    								out.println(wc.findwinner(userValOfCards,userValOfCards));
-    								winresult=wc.findwinner(userValOfCards,userValOfCards);
+    								winresult=wc.findwinner(computerValOfCards,userValOfCards);
+    								out.println(winresult);
+    								
     								winner=true;
     								
     							}
@@ -123,15 +126,22 @@ public class BlackJackgameRunner {
 			else if (choice.equalsIgnoreCase("no")){
 				Scan.close();	
 				isgame_finish=true;
+				out.println("thanks for using my program");
 			}
 			else {
-				throw new IllegalArgumentException("Invalid input.please enter 'yes' or 'no'");
+				throw new IllegalArgumentException("Invalid input.please enter 'yes' or 'no' and rerun program");
+				
 			}
 			
 	    }
 		
 	Scan.close();	
 	}
+
+
+
+
+}
 
 
 
