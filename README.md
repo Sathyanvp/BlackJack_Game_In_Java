@@ -35,3 +35,34 @@ This is a simple console-based Blackjack game implemented in Java.
     * Enter "hit" or "stand" as prompted.
 
 ## Project Structure
+BlackJackGame/
+├── BlackJackgameRunner.java
+├── Calculation.java
+├── UserCards.java
+└── Winnerclass.java
+
+
+* `BlackJackgameRunner.java`: The main class that runs the game.
+* `Calculation.java`: Class responsible for calculating the sum of card values.
+* `UserCards.java`: Class responsible for generating and managing the player's cards.
+* `Winnerclass.java`: Class responsible for determining the winner.
+
+## Variables and Data Structures.
+
+* `money`: Integer representing the player's virtual money.
+* `bet`: Integer representing the player's current bet.
+* `usercards`: `List<Integer>` storing the player's cards.
+* `computercards`: `List<Integer>` storing the computer's cards.
+* `userValOfCards`: Integer representing the sum of the player's cards.
+* `computerValOfCards`: Integer representing the sum of the computer's cards.
+* `cards`: `List<Integer>` representing the deck of cards.
+* `isgame_finish`: boolean that controls the main game loop.
+* `winresult`: String that stores the result of the round.
+
+## Future Improvements
+
+* Implement a graphical user interface (GUI).
+* Add more advanced Blackjack rules, such as splitting pairs and doubling down.
+* Improve the computer's AI.
+* Add more robust error handling.
+* Add the ability to change the amount of decks in the game.
