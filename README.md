@@ -36,6 +36,7 @@ This is a simple console-based Blackjack game implemented in Java.
 
 ## Project Structure
 BlackJackGame/
+
 ├── BlackJackgameRunner.java
 ├── Calculation.java
 ├── UserCards.java
