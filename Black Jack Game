@@ -1,0 +1,130 @@
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+import random
+
+sum_user=0
+sum_computer=0
+sd_or_hit=""  
+user_card=[]
+computer_card=[]
+
+
+def user_cards(user_card,sum_user):
+    if len(user_card)==0:
+       for i in range(0,2):
+           user_card.append(random.choice(cards))
+    else:
+       user_card.append(random.choice(cards))
+    print(f"your cards{user_card}")
+    
+
+def computer_cards(computer_card,sum_computer):
+  if len(computer_card)==0:
+      for i in range(0,2):
+        computer_card.append(random.choice(cards))
+ 
+  else:
+    computer_card.append(random.choice(cards))
+  d=len(computer_card)
+  print(f"dealers card{computer_card[:-1]}")
+  for m in range(0,d-1):
+      sum_computer=sum_computer+computer_card[m]
+  print(f"total of delar cards {sum_computer}")
+
+
+
+def total(card):
+    l=len(card)
+    sum=0
+    for i in range(0,l):
+      sum=sum+card[i]
+    return sum
+
+def find_winner(sum_computer,sum_user):
+
+  if sum_computer > 21 and sum_user> 21:
+    return "You lose 😭"
+  if sum_user == sum_computer:
+    return "Draw 🙃"
+  elif sum_computer==21 and len(computer_card)==2:
+    return "You lose 😭"
+  elif sum_user==21 and len(user_card)==2:
+    return "You win 😃"
+  elif sum_user > 21:
+    return " You lose 😭"
+  elif sum_computer > 21:
+    return "You win 😃"
+  elif sum_user > sum_computer:
+    return "You win 😃"
+  else:
+    return "You lose 😭"
+  
+
+game_finish='false'
+money=2000
+while game_finish!='true':
+  sum_user=0
+  sum_computer=0
+  sd_or_hit=""  
+  user_card=[]
+  computer_card=[]
+  winner=""
+
+  choice =str(input("do you want to play a game of blackjack? type 'y' or 'n':"))
+  if choice=='y':
+    print(f"you have {money} for bet")
+    bet=int(input("enter bet amount"))
+    if bet<2001:
+        money=money-bet
+      
+        user_cards(user_card,sum_user)
+        sum_user=total(user_card)
+        sum_computer=total(computer_card)
+        computer_cards(computer_card,sum_computer)
+        if sum_user == sum_computer:
+            
+            game_finish='true'
+            print( "Draw 🙃")
+        elif sum_computer==21 and len(computer_card)==2:
+            
+            game_finish='true'
+            print("You lose 😭")
+        elif sum_user==21 and len(user_card)==2:
+          
+            game_finish='true'
+            print("You lose 😭")
+        else:   
+            print(f"total of your {sum_user}")
+            winner_f='false'   
+            while winner_f!='true':
+                sd_or_hit=input("do you want to stand or hit")
+                
+                if sd_or_hit=="stand":
+                  
+                  while sum_computer<21:
+                       computer_card.append(random.choice(cards))
+                       sum_computer=total(computer_card)
+                  print(f"delars card {computer_card}")
+                  print(f"total of delar {sum_computer}")
+                  winner=find_winner(sum_computer,sum_user)
+                  winner_f='true'
+                  print(winner)
+                else:
+                   
+                  
+                   user_card.append(random.choice(cards))
+                   sum_user=total(user_card)
+                   if sum_user>=21:
+                       winner=find_winner(sum_computer,sum_user)
+                       print(winner)
+                       winner_f='true'
+                   print(user_card)
+                 
+                print(f"your total {sum_user}")
+        if winner=="You win 😃"or winner=="Draw 🙃":
+            money=bet+money
+        print(f"balance amount{money}")
+        if money==0:
+              print("there is no money to bet so please restart")
+              game_finish='true'
+    else:
+        print("you do not have enough money")
